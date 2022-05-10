@@ -14,9 +14,7 @@ module Sentry
       }.freeze
 
       def add(*args, &block)
-        super
-        add_breadcrumb(*args, &block)
-        nil
+        super.tap { add_breadcrumb(*args, &block) }
       end
 
       def add_breadcrumb(severity, message = nil, progname = nil)
